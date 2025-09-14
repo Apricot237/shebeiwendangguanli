@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>山东中国电产制造智能管理一体化平台</title>
+<script src="https://cdn.tailwindcss.com/3.4.16">});
+</script>
+<script id="treeAndTableInteraction">
+document.addEventListener('DOMContentLoaded', function() {
+const categoryItems = document.querySelectorAll('.category-item');
+const mainTableBody = document.querySelector('#mainTable tbody');
+const attachmentTableBody = document.querySelector('#attachmentTable tbody');
+categoryItems.forEach(item => {
+item.addEventListener('click', function() {
+categoryItems.forEach(i => i.classList.remove('bg-blue-50', 'text-blue-600'));
+this.classList.add('bg-blue-50', 'text-blue-600');
+});
+});
+const mainTableRows = document.querySelectorAll('#mainTable tbody tr');
+mainTableRows.forEach(row => {
+row.addEventListener('click', function() {
+mainTableRows.forEach(r => r.classList.remove('bg-blue-50'));
+this.classList.add('bg-blue-50');
+});
+});
+});
+</script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: '#009944',
+secondary: '#2D8CF0'
+},
+borderRadius: {
+'none': '0px',
+'sm': '4px',
+DEFAULT: '8px',
+'md': '12px',
+'lg': '16px',
+'xl': '20px',
+'2xl': '24px',
+'3xl': '32px',
+'full': '9999px',
+'button': '8px'
+}
+}
+}
+}
+});
+</script>
+<script id="treeAndTableInteraction">
+document.addEventListener('DOMContentLoaded', function() {
+const categoryItems = document.querySelectorAll('.category-item');
+const mainTableBody = document.querySelector('#mainTable tbody');
+const attachmentTableBody = document.querySelector('#attachmentTable tbody');
+categoryItems.forEach(item => {
+item.addEventListener('click', function() {
+categoryItems.forEach(i => i.classList.remove('bg-blue-50', 'text-blue-600'));
+this.classList.add('bg-blue-50', 'text-blue-600');
+});
+});
+const mainTableRows = document.querySelectorAll('#mainTable tbody tr');
+mainTableRows.forEach(row => {
+row.addEventListener('click', function() {
+mainTableRows.forEach(r => r.classList.remove('bg-blue-50'));
+this.classList.add('bg-blue-50');
+});
+});
+});
+</script>
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+.table-container::-webkit-scrollbar {
+height: 8px;
+}
+.table-container::-webkit-scrollbar-track {
+background: #f1f1f1;
+}
+.table-container::-webkit-scrollbar-thumb {
+background: #888;
+border-radius: 4px;
+}
+.table-container::-webkit-scrollbar-thumb:hover {
+background: #555;
+}
+</style>
+</head>
+<body class="min-h-screen bg-white">
+<script id="factoryData">
+document.addEventListener('DOMContentLoaded', function() {
+const factorySelect = document.getElementById('factory');
+const workshopSelect = document.getElementById('workshop');
+const lineSelect = document.getElementById('line');
+if (!factorySelect || !workshopSelect || !lineSelect) {
+return;
+}
+const data = {
+'jinan': {
+name: '济南卷烟厂',
+workshops: {
+'zhisi': {
+name: '制丝车间',
+lines: ['A线', 'B线', 'C线']
+},
+'baozhuang': {
+name: '包装车间',
+lines: ['D线', 'E线', 'F线']
+}
+}
+},
+'qingdao': {
+name: '青岛卷烟厂',
+workshops: {
+'zhisi': {
+name: '制丝车间',
+lines: ['A线', 'B线']
+},
+'baozhuang': {
+name: '包装车间',
+lines: ['C线', 'D线']
+}
+}
+}
+};
+factorySelect.addEventListener('change', function() {
+workshopSelect.innerHTML = '<option value="">请选择车间</option>';
+lineSelect.innerHTML = '<option value="">请选择产线</option>';
+const selectedFactory = this.value;
+if (selectedFactory && data[selectedFactory]) {
+const workshops = data[selectedFactory].workshops;
+for (const [key, workshop] of Object.entries(workshops)) {
+const option = document.createElement('option');
+option.value = key;
+option.textContent = workshop.name;
+workshopSelect.appendChild(option);
+}
+}
+});
+workshopSelect.addEventListener('change', function() {
+lineSelect.innerHTML = '<option value="">请选择产线</option>';
+const selectedFactory = factorySelect.value;
+const selectedWorkshop = this.value;
+if (selectedFactory && selectedWorkshop &&
+data[selectedFactory] &&
+data[selectedFactory].workshops[selectedWorkshop]) {
+const lines = data[selectedFactory].workshops[selectedWorkshop].lines;
+lines.forEach(line => {
+const option = document.createElement('option');
+option.value = line;
+option.textContent = line;
+lineSelect.appendChild(option);
+});
+}
+});
+});
+});
+</script>
+<script id="treeAndTableInteraction">
+document.addEventListener('DOMContentLoaded', function() {
+const categoryItems = document.querySelectorAll('.category-item');
+const mainTableBody = document.querySelector('#mainTable tbody');
+const attachmentTableBody = document.querySelector('#attachmentTable tbody');
+categoryItems.forEach(item => {
+item.addEventListener('click', function() {
+categoryItems.forEach(i => i.classList.remove('bg-blue-50', 'text-blue-600'));
+this.classList.add('bg-blue-50', 'text-blue-600');
+});
+});
+const mainTableRows = document.querySelectorAll('#mainTable tbody tr');
+mainTableRows.forEach(row => {
+row.addEventListener('click', function() {
+mainTableRows.forEach(r => r.classList.remove('bg-blue-50'));
+this.classList.add('bg-blue-50');
+});
+});
+});
+</script>
+<header class="w-full bg-white border-b">
+   <!-- 阮头部区域开始 -->
+        <div style="display: flex; align-items: center; padding: 15px 30px;background-color: #ffffff; border-bottom: 1px solid #c7c7c7;">
+            <div style="display: flex; align-items: center;">
+                <!-- 中国烟草LOGO SVG -->
+             <svg 
+        xmlns="http://www.w3.org/2000/svg" 
+        viewBox="0 0 225 64" 
+        fill="none" 
+        style="width: 200px; height: auto; margin-right: 26px;"
+        ><path fill="#1A1311" d="M75.51 57.152a9.15 9.15 0 0 1-5.376 2.277 4.987 4.987 0 0 1-3.757-1.53A5.04 5.04 0 0 1 65 54.335a5.765 5.765 0 0 1 3.142-5.18 6.957 6.957 0 0 1 3.611-.892c1.181-.008 2.355.167 3.482.52v2.522h-.666a2.445 2.445 0 0 0-1.222-1.9 4.547 4.547 0 0 0-2.421-.617 4.047 4.047 0 0 0-3.245 1.404 4.753 4.753 0 0 0-1.08 3.171 4.926 4.926 0 0 0 1.218 3.372 4.375 4.375 0 0 0 3.464 1.471 7.246 7.246 0 0 0 4.234-1.577l-.008.522ZM89.466 59.181H84.92v-.397a1.7 1.7 0 0 0 1.12-.3c.23-.291.337-.662.296-1.03V53.61h-5.67v3.843c0 .86.471 1.307 1.411 1.331v.397h-4.55v-.397c.398.039.796-.067 1.121-.3.229-.292.334-.662.294-1.03v-7.228a1.408 1.408 0 0 0-.294-1.027 1.761 1.761 0 0 0-1.12-.293v-.397h4.546v.397a1.761 1.761 0 0 0-1.121.293c-.223.293-.326.66-.287 1.027v2.87h5.67v-2.87a1.442 1.442 0 0 0-.287-1.027 1.761 1.761 0 0 0-1.121-.293v-.397h4.538v.397a1.742 1.742 0 0 0-1.12.293c-.23.29-.335.66-.294 1.027v7.234c-.043.37.063.744.293 1.03a1.68 1.68 0 0 0 1.121.293v.391ZM96.228 59.181h-4.546v-.397c.397.04.796-.067 1.12-.3a1.42 1.42 0 0 0 .287-1.03v-7.228a1.406 1.406 0 0 0-.286-1.027 1.744 1.744 0 0 0-1.121-.293v-.397h4.546v.397a1.72 1.72 0 0 0-1.12.293c-.23.29-.335.66-.294 1.027v7.234c0 .86.47 1.302 1.413 1.33l.001.391ZM110.51 48.907c-1.121.097-1.703 1.77-1.703 5.022v5.645h-.427l-8.027-9.735v3.105a22.408 22.408 0 0 0 .16 3.245c.245 1.642.762 2.509 1.552 2.6v.393h-4.036v-.397c1.131-.158 1.697-2.076 1.7-5.755v-2.882a1.229 1.229 0 0 0-.311-.961 1.762 1.762 0 0 0-1.088-.282v-.397h3.043l6.762 8.155v-2.471c0-3.416-.559-5.175-1.691-5.285v-.398h4.066v.398ZM123.053 59.187h-3.335v-.398h.208c.111 0 .161-.096.161-.273a.555.555 0 0 0-.036-.19l-1.121-2.901h-4.064a7.373 7.373 0 0 0-.641 2.402.872.872 0 0 0 .311.695c.22.184.501.278.788.263h.496v.402h-4.164v-.398c.699-.036 1.333-.695 1.896-1.997l3.82-8.725h.543l3.299 8.536c.164.47.378.921.641 1.344a1.57 1.57 0 0 0 1.202.842l-.004.398Zm-4.325-4.276-1.692-4.443-1.949 4.443h3.641ZM139.493 51.305h-.653c-.025-1.602-.968-2.403-2.829-2.403h-.507v8.554c0 .86.48 1.307 1.417 1.33v.396h-4.55v-.397c.398.04.796-.066 1.121-.298.23-.291.336-.662.295-1.031v-8.552h-.641c-1.723 0-2.611.8-2.663 2.402h-.647V48.13h.404c.086.251.206.38.368.38h8.131c.214 0 .31-.129.31-.38h.444v3.176ZM153.699 53.339a5.452 5.452 0 0 1-1.045 3.153 6.445 6.445 0 0 1-2.686 2.242 7.352 7.352 0 0 1-3.134.69 5.795 5.795 0 0 1-4.004-1.454 4.645 4.645 0 0 1-1.613-3.585 5.655 5.655 0 0 1 2.009-4.283 6.76 6.76 0 0 1 4.711-1.838 5.793 5.793 0 0 1 4.864 2.272 4.49 4.49 0 0 1 .902 2.803m-1.575 1.475a6.16 6.16 0 0 0-.709-2.893 5.012 5.012 0 0 0-2.162-2.192 5.382 5.382 0 0 0-2.487-.69 3.771 3.771 0 0 0-3.724 2.393 3.758 3.758 0 0 0-.253 1.545 5.799 5.799 0 0 0 1.429 3.9 5.035 5.035 0 0 0 3.983 1.81 3.804 3.804 0 0 0 3.922-3.873M165.009 55.424a3.298 3.298 0 0 1-1.518 2.712 5.413 5.413 0 0 1-3.24 1.05h-4.362v-.397c.397.042.797-.064 1.121-.298.23-.291.336-.662.294-1.031v-7.234a1.396 1.396 0 0 0-.294-1.027 1.724 1.724 0 0 0-1.121-.293v-.397h5.626a4.739 4.739 0 0 1 2.046.335 1.576 1.576 0 0 1 .905 1.552c0 1.143-.881 2.186-2.633 3.111a5.996 5.996 0 0 1 2.174.32 1.6 1.6 0 0 1 1.004 1.602m-2.213-3.907a2.868 2.868 0 0 0-.563-1.773 2.08 2.08 0 0 0-1.747-.843 2.49 2.49 0 0 0-1.467.396v3.893h1.813c1.308 0 1.962-.558 1.962-1.673m.428 4.935a2.663 2.663 0 0 0-.891-2.096 3.445 3.445 0 0 0-2.365-.788h-.948v4.4a3.41 3.41 0 0 0 1.997.683 2.077 2.077 0 0 0 2.072-1.337c.105-.275.15-.57.133-.863M178.103 59.187h-3.336v-.398h.207c.11 0 .16-.096.16-.273a.556.556 0 0 0-.039-.19l-1.111-2.901h-4.068a7.318 7.318 0 0 0-.64 2.402.841.841 0 0 0 .32.695c.219.184.5.278.786.263h.497v.402h-4.164v-.398c.696-.036 1.332-.695 1.893-1.997l3.792-8.725h.549l3.293 8.536c.168.469.383.919.641 1.344a1.579 1.579 0 0 0 1.21.842l.01.398Zm-4.324-4.276-1.699-4.443-1.949 4.443h3.648ZM190.289 57.152a9.147 9.147 0 0 1-5.377 2.277 4.965 4.965 0 0 1-5.125-5.093 5.766 5.766 0 0 1 3.137-5.18 6.976 6.976 0 0 1 3.613-.892 11.317 11.317 0 0 1 3.477.52v2.522h-.66a2.44 2.44 0 0 0-1.228-1.9 4.512 4.512 0 0 0-2.42-.617 4.038 4.038 0 0 0-3.243 1.404 4.743 4.743 0 0 0-1.089 3.171 4.897 4.897 0 0 0 1.217 3.371 4.373 4.373 0 0 0 3.463 1.472 7.234 7.234 0 0 0 4.234-1.577l.001.522ZM202.954 57.152a9.154 9.154 0 0 1-5.376 2.277 4.98 4.98 0 0 1-3.758-1.53 5.045 5.045 0 0 1-1.374-3.563 5.764 5.764 0 0 1 3.139-5.18 6.956 6.956 0 0 1 3.613-.892 11.336 11.336 0 0 1 3.475.52v2.523h-.655a2.44 2.44 0 0 0-1.229-1.901 4.524 4.524 0 0 0-2.419-.617 4.035 4.035 0 0 0-3.241 1.404 4.747 4.747 0 0 0-1.083 3.178 4.91 4.91 0 0 0 1.211 3.37 4.378 4.378 0 0 0 3.469 1.473 7.239 7.239 0 0 0 4.234-1.578l-.006.516ZM217.586 53.34a5.392 5.392 0 0 1-1.046 3.153 6.402 6.402 0 0 1-2.68 2.242 7.371 7.371 0 0 1-3.133.69 5.79 5.79 0 0 1-4.004-1.454 4.622 4.622 0 0 1-1.619-3.592 5.678 5.678 0 0 1 2.004-4.282 6.764 6.764 0 0 1 4.71-1.839 5.786 5.786 0 0 1 4.865 2.273c.609.805.927 1.793.902 2.802m-1.57 1.475c.006-1.007-.236-2-.705-2.892a5.02 5.02 0 0 0-2.173-2.193 5.372 5.372 0 0 0-2.477-.682 3.784 3.784 0 0 0-3.983 3.938 5.776 5.776 0 0 0 1.441 3.9 5.035 5.035 0 0 0 3.983 1.81 3.808 3.808 0 0 0 3.922-3.873M66.934 31.267V12.352h13.178V6.335h5.706v6.017h13.173v18.774h-5.706v-1.814h-7.467v10.782h-5.706V29.312h-7.47v1.955h-5.708Zm5.709-6.995h7.466v-6.875h-7.466v6.875Zm20.642-6.875h-7.467v6.875h7.467v-6.875ZM105.984 39.956V7.593h32.781v32.363H133.2v-1.674h-21.803v1.672l-5.413.002Zm5.413-5.742H133.2V12.08h-21.803v22.136Zm1.171-16.25V13.76h19.319v4.202h-7.46v2.243h6.874v4.202h-2.486a71.765 71.765 0 0 0 2.781 2.525l-1.602 1.258h2.192v4.35h-19.757v-4.352h6.886v-3.781h-6.012v-4.202h5.999v-2.242l-6.734.001Zm15.075 10.224a27.372 27.372 0 0 1-1.313-1.4l-.881-.842 1.762-1.54h-2.784v3.782h3.216ZM145.616 23.422c-.193-1.495-.727-4.156-1.601-7.984-.151-.65-.297-1.302-.439-1.955l3.363-.71c.197.936.441 2.243.732 3.929l.873 4.625V19.92c.096-2.055.145-4.111.147-6.169V6.61h4.822v7.568c.197-.282.539-.697 1.027-1.264.391-.563.684-.978.881-1.258l1.171 1.258V7.727h21.658v32.228h-4.832v-1.54h-11.993v1.54h-4.833v-6.44l-1.9 2.385-3.076-3.922a36.46 36.46 0 0 1-4.393 8.12 60.319 60.319 0 0 0-3.508-3.636 22.414 22.414 0 0 0 4.686-13.592l-2.785.553Zm7.174 3.509c.48.469 1.173 1.166 2.046 2.093.783.759 1.368 1.313 1.762 1.686V16.844a11.75 11.75 0 0 1-1.613 1.533 40.161 40.161 0 0 1-1.601 1.687 66.898 66.898 0 0 1-.588 6.867m9.366-5.892v-4.062h3.073c.096-1.302.146-2.615.146-3.923h4.386v3.923h2.932v4.062h-3.074a5.564 5.564 0 0 1-.292 1.827c.783.934 1.802 2.242 3.073 3.92.481.558.823.98 1.02 1.26v-15.97h-11.993v16.948a12.74 12.74 0 0 0 3.658-7.983l-2.929-.002Zm9.072 11.766c-1.167-1.68-2.338-3.355-3.506-5.04a25.689 25.689 0 0 1-3.811 5.605l-2.481-2.663v3.642h11.994V30.43l-2.196 2.375ZM183.341 12.914V8.712h9.079V6.47h5.125v2.242h7.018V6.47h5.125v2.242h8.925v4.202h-8.921v1.68h-5.124v-1.68h-7.018v1.68h-5.125v-1.68h-9.084Zm3.373 17.234v-14.85h28.544v14.853h-11.417v1.821h14.772v3.922h-14.776v4.057h-5.563v-4.052H183.34v-3.927h14.934v-1.823l-11.56-.001Zm5.413-9.11h17.713V19.08h-17.713v1.959Zm0 5.19h17.713v-1.964h-17.713v1.963Z"/><path fill="#017359" d="M30.15 18.42c-3.479 4.549-3.826 9.475-1.661 14.688.64 1.54 1.477 2.971 2.452 4.322 2.714 3.738 3.959 7.89 3.466 12.537-.008.075.044.156.117.395 4.79-4.393 6.21-9.997 6.232-16.157.335 0 .426.262.57.429 3.484 4.122 6.965 8.245 10.444 12.37.325.381.28.623.025 1-4.324 6.397-10.253 10.328-17.792 11.595-7.82 1.313-14.9-.607-21.096-5.61-5.239-4.233-8.412-9.79-9.505-16.471-1.302-7.955.564-15.163 5.522-21.472 4.176-5.313 9.656-8.53 16.247-9.64 7.848-1.322 14.935.598 21.195 5.582 2.245 1.787 3.999 3.927 4.413 6.91.662 4.76-2.048 10.316-7.694 11.236-5.988.976-10.275-2.276-11.186-8.378-.408-2.734.03-5.181 2.07-7.172.146-.143.373-.294.213-.522-.119-.17-.329-.033-.5.003-6.638 1.405-13.275 6.147-14.807 15.205-1.416 8.376 2.104 14.423 8.347 19.327.617.486 1.238.948 1.613 1.675.498.961.502 1.908-.033 2.852-.118.21-.276.403-.357.625-.117.317-.2.707.088.936.297.238.693.182 1.013-.035.4-.27.693-.656.986-1.043 1.426-1.876 1.56-4.043 1.493-6.294-.106-3.584-1.449-6.716-3.37-9.619-1.807-2.729-2.957-5.677-3.11-8.959-.17-3.636 1.112-6.755 3.558-9.399.326-.352.616-.737.923-1.108l.125.191Z"/></svg>
+                <!-- 平台名称 -->
+                <div style="font-size: 28px; color: #333;margin-left: 2px; font-weight:bold;">山东中烟生产制造智能管理一体化平台</div>
+            </div>
+        </div>
+        <!-- 导航栏区域 -->
+        <div style="padding: 5px 15px; border-bottom: 2px solid #1890ff;background-color: #ffffff;">
+            <div style="display: flex; align-items: center;">
+                <!-- 开始页按钮（带首页图标） -->
+                <div style="display: flex; align-items: center; padding: 8px 15px; background-color: #f0f0f0; border-radius: 4px; margin-right: 10px; cursor: pointer;">
+                    <!-- 首页图标 -->
+                    <svg width="12" height="12" viewBox="0 0 12 12" style="margin-right: 20px;">
+                        <path d="M8.707 1.5a1 1 0 00-1.414 0L.646 8.146a.5.5 0 00.708.708L2 8.207V13.5A1.5 1.5 0 003.5 15h9a1.5 1.5 0 001.5-1.5V8.207l.646.647a.5.5 0 00.708-.708L13 5.793V2.5a.5.5 0 00-.5-.5h-1a.5.5 0 00-.5.5v1.293L8.707 1.5z" fill="#666"/>
+                    </svg>
+                    <span style="color: #666; font-size: 14px;">开始页</span>
+                </div>
+                <!-- 当前标签页按钮（浅蓝色底，深蓝色1px圆角外边框，右上角带X） -->
+                <div style="display: flex; align-items: center; padding: 8px 15px; background-color: #e6f7ff; border: 1px solid #1890ff; border-radius: 5px; cursor: pointer; position: relative;">
+                    <span style="color: #1890ff; font-size: 14px; font-weight: bold;">交接班查询</span>
+                    <!-- 右上角X图标 -->
+                    <svg width="12" height="12" viewBox="0 0 16 16" style="position: absolute; top: 2px; right: 2px; cursor: pointer;">
+                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" fill="#1890ff"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+      <!-- 阮头部区域结束 -->
+
+
+
+
+<div class="px-6 py-2 flex items-center gap-3 bg-gray-50">
+<button class="px-4 py-1.5 bg-blue-500 text-white rounded-[5px] flex items-center gap-1.5 text-sm whitespace-nowrap hover:scale-105 hover:shadow-lg transition-all duration-300 hover:bg-blue-600">
+<i class="ri-search-line"></i>查询
+</button>
+<button class="px-4 py-1.5 bg-blue-500 text-white rounded-[5px] flex items-center gap-1.5 text-sm whitespace-nowrap hover:scale-105 hover:shadow-lg transition-all duration-300 hover:bg-blue-600">
+<i class="ri-file-list-line"></i>查阅
+</button>
+<button class="px-4 py-1.5 bg-blue-500 text-white rounded-[5px] flex items-center gap-1.5 text-sm whitespace-nowrap hover:scale-105 hover:shadow-lg transition-all duration-300 hover:bg-blue-600">
+<i class="ri-refresh-line hover:rotate-180 transition-transform duration-500"></i>刷新
+</button>
+<button class="px-4 py-1.5 bg-blue-500 text-white rounded-[5px] flex items-center gap-1.5 text-sm whitespace-nowrap hover:scale-105 hover:shadow-lg transition-all duration-300 hover:bg-blue-600">
+<i class="ri-delete-bin-line"></i>清空
+</button>
+<button class="px-4 py-1.5 bg-blue-500 text-white rounded-[5px] flex items-center gap-1.5 text-sm whitespace-nowrap hover:scale-105 hover:shadow-lg transition-all duration-300 hover:bg-blue-600">
+<i class="ri-add-line"></i>添加
+</button>
+<button class="px-4 py-1.5 bg-blue-500 text-white rounded-[5px] flex items-center gap-1.5 text-sm whitespace-nowrap hover:scale-105 hover:shadow-lg transition-all duration-300 hover:bg-blue-600">
+<i class="ri-delete-bin-line"></i>删除
+</button>
+<button class="px-4 py-1.5 bg-blue-500 text-white rounded-[5px] flex items-center gap-1.5 text-sm whitespace-nowrap hover:scale-105 hover:shadow-lg transition-all duration-300 hover:bg-blue-600">
+<i class="ri-edit-line"></i>修改
+</button>
+<button class="px-4 py-1.5 bg-blue-500 text-white rounded-[5px] flex items-center gap-1.5 text-sm whitespace-nowrap hover:scale-105 hover:shadow-lg transition-all duration-300 hover:bg-blue-600">
+<i class="ri-download-line"></i>导出
+</button>
+</div>
+</header>
+<main class="px-6 py-4 bg-[#F0F2F5] min-h-[calc(100vh-132px)]">
+<div class="flex gap-4">
+<div class="w-[280px] bg-white rounded-xl shadow-lg p-4 border border-gray-100">
+<div class="text-lg font-medium mb-6 pb-3 border-b border-gray-100 flex items-center gap-2">
+<i class="ri-folder-shield-2-line text-blue-500"></i>
+<span>知识分类</span>
+</div>
+<div class="flex flex-col gap-3">
+<div class="category-item group relative">
+<div class="flex items-center gap-3 px-4 py-3 rounded-xl cursor-pointer bg-white shadow-sm hover:shadow-xl transform hover:-translate-y-1 transition-all duration-500">
+<div class="w-10 h-10 flex items-center justify-center bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl group-hover:rotate-[15deg] transition-transform duration-300">
+<i class="ri-book-2-line text-white text-xl"></i>
+</div>
+<span class="font-medium text-gray-700 group-hover:text-blue-600 transition-colors duration-300">维修手册</span>
+<div class="ml-auto flex items-center gap-1">
+<span class="text-xs text-gray-400">12 个</span>
+<i class="ri-arrow-right-s-line text-blue-500 group-hover:translate-x-1 transition-transform duration-300"></i>
+</div>
+</div>
+</div>
+<div class="category-item group relative">
+<div class="flex items-center gap-3 px-4 py-3 rounded-xl cursor-pointer bg-white shadow-sm hover:shadow-xl transform hover:-translate-y-1 transition-all duration-500">
+<div class="w-10 h-10 flex items-center justify-center bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-xl group-hover:rotate-[15deg] transition-transform duration-300">
+<i class="ri-lightbulb-line text-white text-xl"></i>
+</div>
+<span class="font-medium text-gray-700 group-hover:text-yellow-600 transition-colors duration-300">维修经验</span>
+<div class="ml-auto flex items-center gap-1">
+<span class="text-xs text-gray-400">8 个</span>
+<i class="ri-arrow-right-s-line text-yellow-500 group-hover:translate-x-1 transition-transform duration-300"></i>
+</div>
+</div>
+</div>
+<div class="category-item group relative">
+<div class="flex items-center gap-3 px-4 py-3 rounded-xl cursor-pointer bg-white shadow-sm hover:shadow-xl transform hover:-translate-y-1 transition-all duration-500">
+<div class="w-10 h-10 flex items-center justify-center bg-gradient-to-br from-green-500 to-green-600 rounded-xl group-hover:rotate-[15deg] transition-transform duration-300">
+<i class="ri-file-list-3-line text-white text-xl"></i>
+</div>
+<span class="font-medium text-gray-700 group-hover:text-green-600 transition-colors duration-300">维修案例</span>
+<div class="ml-auto flex items-center gap-1">
+<span class="text-xs text-gray-400">15 个</span>
+<i class="ri-arrow-right-s-line text-green-500 group-hover:translate-x-1 transition-transform duration-300"></i>
+</div>
+</div>
+</div>
+<div class="category-item group relative">
+<div class="flex items-center gap-3 px-4 py-3 rounded-xl cursor-pointer bg-white shadow-sm hover:shadow-xl transform hover:-translate-y-1 transition-all duration-500">
+<div class="w-10 h-10 flex items-center justify-center bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl group-hover:rotate-[15deg] transition-transform duration-300">
+<i class="ri-video-line text-white text-xl"></i>
+</div>
+<span class="font-medium text-gray-700 group-hover:text-purple-600 transition-colors duration-300">维修视频</span>
+<div class="ml-auto flex items-center gap-1">
+<span class="text-xs text-gray-400">6 个</span>
+<i class="ri-arrow-right-s-line text-purple-500 group-hover:translate-x-1 transition-transform duration-300"></i>
+</div>
+</div>
+</div>
+<div class="category-item group relative">
+<div class="flex items-center gap-3 px-4 py-3 rounded-xl cursor-pointer bg-white shadow-sm hover:shadow-xl transform hover:-translate-y-1 transition-all duration-500">
+<div class="w-10 h-10 flex items-center justify-center bg-gradient-to-br from-gray-500 to-gray-600 rounded-xl group-hover:rotate-[15deg] transition-transform duration-300">
+<i class="ri-folder-line text-white text-xl"></i>
+</div>
+<span class="font-medium text-gray-700 group-hover:text-gray-600 transition-colors duration-300">其他知识</span>
+<div class="ml-auto flex items-center gap-1">
+<span class="text-xs text-gray-400">3 个</span>
+<i class="ri-arrow-right-s-line text-gray-500 group-hover:translate-x-1 transition-transform duration-300"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex-1">
+<div class="bg-white rounded-lg shadow-sm h-[820px] relative">
+<div class="p-4 border-b flex items-center gap-6">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<label class="text-sm text-gray-600 whitespace-nowrap">工厂:</label>
+<select id="factory" class="w-[180px] px-3 py-1.5 border border-gray-200 !rounded-button text-sm focus:outline-none focus:border-secondary bg-gray-50/50">
+<option value="">请选择工厂</option>
+<option value="jinan">济南卷烟厂</option>
+<option value="qingdao">青岛卷烟厂</option>
+</select>
+</div>
+<div class="flex items-center gap-2">
+<label class="text-sm text-gray-600 whitespace-nowrap">车间:</label>
+<select id="workshop" class="w-[180px] px-3 py-1.5 border border-gray-200 !rounded-button text-sm focus:outline-none focus:border-secondary bg-gray-50/50">
+<option value="">请选择车间</option>
+</select>
+</div>
+<div class="flex items-center gap-2">
+<label class="text-sm text-gray-600 whitespace-nowrap">产线:</label>
+<select id="line" class="w-[180px] px-3 py-1.5 border border-gray-200 !rounded-button text-sm focus:outline-none focus:border-secondary bg-gray-50/50">
+<option value="">请选择产线</option>
+</select>
+</div>
+<div class="flex items-center gap-2">
+<label class="text-sm text-gray-600 whitespace-nowrap">模型类型:</label>
+<select class="w-[180px] px-3 py-1.5 border border-gray-200 !rounded-button text-sm focus:outline-none focus:border-secondary bg-gray-50/50">
+<option value="">请选择模型类型</option>
+<option>预热评价模型</option>
+<option>运行状态评价模型</option>
+</select>
+</div>
+</div>
+</div>
+<div class="flex h-[720px]">
+<div class="flex-1 flex flex-col">
+<div class="table-container flex-1 overflow-x-auto">
+<table id="mainTable" class="w-full">
+<thead class="bg-gray-50 border-b">
+<tr>
+<th class="text-left text-sm font-medium text-gray-600 px-4 py-3">知识标题</th>
+<th class="text-left text-sm font-medium text-gray-600 px-4 py-3">知识类型</th>
+<th class="text-left text-sm font-medium text-gray-600 px-4 py-3">设备类型</th>
+<th class="text-left text-sm font-medium text-gray-600 px-4 py-3">设备机型</th>
+<th class="text-left text-sm font-medium text-gray-600 px-4 py-3">所属烟厂</th>
+<th class="text-left text-sm font-medium text-gray-600 px-4 py-3">创建人</th>
+<th class="text-left text-sm font-medium text-gray-600 px-4 py-3">创建时间</th>
+<th class="text-left text-sm font-medium text-gray-600 px-4 py-3">查阅状态</th>
+<th class="text-left text-sm font-medium text-gray-600 px-4 py-3">阅读/下载</th>
+<th class="text-left text-sm font-medium text-gray-600 px-4 py-3">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr class="hover:bg-gray-50 border-b cursor-pointer">
+<td class="px-4 py-3 text-sm">Z117专机机械故障处理方法</td>
+<td class="px-4 py-3 text-sm">维修案例</td>
+<td class="px-4 py-3 text-sm">机械</td>
+<td class="px-4 py-3 text-sm">Z117</td>
+<td class="px-4 py-3 text-sm">济南卷烟厂</td>
+<td class="px-4 py-3 text-sm">王建国</td>
+<td class="px-4 py-3 text-sm">2025-08-20 14:30</td>
+<td class="px-4 py-3 text-sm"><span class="text-green-500">已查看</span></td>
+<td class="px-4 py-3 text-sm">238/56</td>
+<td class="px-4 py-3 text-sm">
+<div class="flex items-center gap-2">
+<button class="text-blue-600 hover:text-blue-800">查看</button>
+<button class="text-blue-600 hover:text-blue-800">编辑</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 border-b cursor-pointer">
+<td class="px-4 py-3 text-sm">GDX2成型机调色系统维护手册</td>
+<td class="px-4 py-3 text-sm">维修手册</td>
+<td class="px-4 py-3 text-sm">电气</td>
+<td class="px-4 py-3 text-sm">GDX2</td>
+<td class="px-4 py-3 text-sm">青岛卷烟厂</td>
+<td class="px-4 py-3 text-sm">李明亮</td>
+<td class="px-4 py-3 text-sm">2025-08-19 09:15</td>
+<td class="px-4 py-3 text-sm"><span class="text-green-500">已查看</span></td>
+<td class="px-4 py-3 text-sm">156/42</td>
+<td class="px-4 py-3 text-sm">
+<div class="flex items-center gap-2">
+<button class="text-blue-600 hover:text-blue-800">查看</button>
+<button class="text-blue-600 hover:text-blue-800">编辑</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 border-b cursor-pointer">
+<td class="px-4 py-3 text-sm">YJ128卷接机维修视频教程</td>
+<td class="px-4 py-3 text-sm">维修视频</td>
+<td class="px-4 py-3 text-sm">机械</td>
+<td class="px-4 py-3 text-sm">YJ128</td>
+<td class="px-4 py-3 text-sm">济南卷烟厂</td>
+<td class="px-4 py-3 text-sm">张志强</td>
+<td class="px-4 py-3 text-sm">2025-08-18 16:45</td>
+<td class="px-4 py-3 text-sm"><span class="text-green-500">已查看</span></td>
+<td class="px-4 py-3 text-sm">189/45</td>
+<td class="px-4 py-3 text-sm">
+<div class="flex items-center gap-2">
+<button class="text-blue-600 hover:text-blue-800">查看</button>
+<button class="text-blue-600 hover:text-blue-800">编辑</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 border-b cursor-pointer">
+<td class="px-4 py-3 text-sm">包装机电气系统故障排查指南</td>
+<td class="px-4 py-3 text-sm">维修手册</td>
+<td class="px-4 py-3 text-sm">电气</td>
+<td class="px-4 py-3 text-sm">ZB128</td>
+<td class="px-4 py-3 text-sm">青岛卷烟厂</td>
+<td class="px-4 py-3 text-sm">刘德华</td>
+<td class="px-4 py-3 text-sm">2025-08-17 10:20</td>
+<td class="px-4 py-3 text-sm"><span class="text-yellow-500">未查看</span></td>
+<td class="px-4 py-3 text-sm">98/23</td>
+<td class="px-4 py-3 text-sm">
+<div class="flex items-center gap-2">
+<button class="text-blue-600 hover:text-blue-800">查看</button>
+<button class="text-blue-600 hover:text-blue-800">编辑</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 border-b cursor-pointer">
+<td class="px-4 py-3 text-sm">制丝设备预防性维护经验总结</td>
+<td class="px-4 py-3 text-sm">维修经验</td>
+<td class="px-4 py-3 text-sm">机械</td>
+<td class="px-4 py-3 text-sm">ZS256</td>
+<td class="px-4 py-3 text-sm">济南卷烟厂</td>
+<td class="px-4 py-3 text-sm">周杰伦</td>
+<td class="px-4 py-3 text-sm">2025-08-16 14:15</td>
+<td class="px-4 py-3 text-sm"><span class="text-green-500">已查看</span></td>
+<td class="px-4 py-3 text-sm">267/78</td>
+<td class="px-4 py-3 text-sm">
+<div class="flex items-center gap-2">
+<button class="text-blue-600 hover:text-blue-800">查看</button>
+<button class="text-blue-600 hover:text-blue-800">编辑</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 border-b cursor-pointer">
+<td class="px-4 py-3 text-sm">卷烟机传感器校准方法</td>
+<td class="px-4 py-3 text-sm">维修手册</td>
+<td class="px-4 py-3 text-sm">电气</td>
+<td class="px-4 py-3 text-sm">JY365</td>
+<td class="px-4 py-3 text-sm">青岛卷烟厂</td>
+<td class="px-4 py-3 text-sm">林俊杰</td>
+<td class="px-4 py-3 text-sm">2025-08-15 09:30</td>
+<td class="px-4 py-3 text-sm"><span class="text-yellow-500">未查看</span></td>
+<td class="px-4 py-3 text-sm">145/34</td>
+<td class="px-4 py-3 text-sm">
+<div class="flex items-center gap-2">
+<button class="text-blue-600 hover:text-blue-800">查看</button>
+<button class="text-blue-600 hover:text-blue-800">编辑</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 border-b cursor-pointer">
+<td class="px-4 py-3 text-sm">包装机械手维护保养指南</td>
+<td class="px-4 py-3 text-sm">维修案例</td>
+<td class="px-4 py-3 text-sm">机械</td>
+<td class="px-4 py-3 text-sm">BZ198</td>
+<td class="px-4 py-3 text-sm">济南卷烟厂</td>
+<td class="px-4 py-3 text-sm">陈奕迅</td>
+<td class="px-4 py-3 text-sm">2025-08-14 15:45</td>
+<td class="px-4 py-3 text-sm"><span class="text-green-500">已查看</span></td>
+<td class="px-4 py-3 text-sm">198/45</td>
+<td class="px-4 py-3 text-sm">
+<div class="flex items-center gap-2">
+<button class="text-blue-600 hover:text-blue-800">查看</button>
+<button class="text-blue-600 hover:text-blue-800">编辑</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 border-b cursor-pointer">
+<td class="px-4 py-3 text-sm">制丝加料系统故障诊断手册</td>
+<td class="px-4 py-3 text-sm">维修手册</td>
+<td class="px-4 py-3 text-sm">电气</td>
+<td class="px-4 py-3 text-sm">ZS512</td>
+<td class="px-4 py-3 text-sm">青岛卷烟厂</td>
+<td class="px-4 py-3 text-sm">郭富城</td>
+<td class="px-4 py-3 text-sm">2025-08-13 11:20</td>
+<td class="px-4 py-3 text-sm"><span class="text-green-500">已查看</span></td>
+<td class="px-4 py-3 text-sm">167/39</td>
+<td class="px-4 py-3 text-sm">
+<div class="flex items-center gap-2">
+<button class="text-blue-600 hover:text-blue-800">查看</button>
+<button class="text-blue-600 hover:text-blue-800">编辑</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="border-t">
+<div class="px-4 py-3 text-sm font-medium">附件列表</div>
+<div class="table-container overflow-x-auto">
+<table id="attachmentTable" class="w-full">
+<thead class="bg-gray-50 border-b">
+<tr>
+<th class="text-left text-sm font-medium text-gray-600 px-4 py-3">附件名称</th>
+<th class="text-left text-sm font-medium text-gray-600 px-4 py-3">文件格式</th>
+<th class="text-left text-sm font-medium text-gray-600 px-4 py-3">文件大小</th>
+<th class="text-left text-sm font-medium text-gray-600 px-4 py-3">上传人</th>
+<th class="text-left text-sm font-medium text-gray-600 px-4 py-3">上传时间</th>
+<th class="text-left text-sm font-medium text-gray-600 px-4 py-3">预览状态</th>
+<th class="text-left text-sm font-medium text-gray-600 px-4 py-3">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr class="hover:bg-gray-50 border-b">
+<td class="px-4 py-3 text-sm">Z117电气原理图</td>
+<td class="px-4 py-3 text-sm">PDF</td>
+<td class="px-4 py-3 text-sm">2.3MB</td>
+<td class="px-4 py-3 text-sm">王建国</td>
+<td class="px-4 py-3 text-sm">2025-08-20 14:30</td>
+<td class="px-4 py-3 text-sm"><span class="text-green-500">支持</span></td>
+<td class="px-4 py-3 text-sm">
+<div class="flex items-center gap-2">
+<button class="text-blue-600 hover:text-blue-800">预览</button>
+<button class="text-blue-600 hover:text-blue-800">下载</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 border-b">
+<td class="px-4 py-3 text-sm">故障处理视频演示</td>
+<td class="px-4 py-3 text-sm">MP4</td>
+<td class="px-4 py-3 text-sm">15.6MB</td>
+<td class="px-4 py-3 text-sm">王建国</td>
+<td class="px-4 py-3 text-sm">2025-08-20 14:30</td>
+<td class="px-4 py-3 text-sm"><span class="text-green-500">支持</span></td>
+<td class="px-4 py-3 text-sm">
+<div class="flex items-center gap-2">
+<button class="text-blue-600 hover:text-blue-800">预览</button>
+<button class="text-blue-600 hover:text-blue-800">下载</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body>
+</html>
